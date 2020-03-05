@@ -8,9 +8,6 @@ import (
 	"sync"
 	"testing"
 	"time"
-
-	"github.com/eopenio/log"
-	"go.uber.org/zap"
 )
 
 // -----------------------------------------------------------------------
@@ -69,10 +66,6 @@ var CustomVerboseFlag bool
 // printing results to stdout, and reporting any failures back to
 // the "testing" package.
 func TestingT(testingT *testing.T) {
-	l := zap.NewAtomicLevel()
-	if l.UnmarshalText([]byte(os.Getenv("log_level"))) == nil {
-		log.SetLevel(l.Level())
-	}
 	benchTime := *newBenchTime
 	if benchTime == 1*time.Second {
 		benchTime = *oldBenchTime
